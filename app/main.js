@@ -1,4 +1,12 @@
 /** @jsx React.DOM */
 var React = require('react');
-var App = require('./App.js');
-React.render(<App/>, document.body);
+var SearchBar = require('./components/SearchBar.js');
+
+$(document).ready(function () {
+	//Initialize the local storage
+	var object = [];
+	localStorage.setItem('favorites', JSON.stringify(object));
+	
+	React.render(<SearchBar />, 
+	document.getElementById('search-bar'));
+});

@@ -1,11 +1,33 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <link rel="stylesheet" href="main.css"/>
-  </head>
-  <body>
-    <script>document.write('<script src="http://' + (location.host || 'localhost').split(':')[0] + ':35729/livereload.js?snipver=1"></' + 'script>')</script>
-    <script src="vendors.js"></script>
-    <script src="main.js"></script>
-  </body>
+	<head>
+		<link rel="stylesheet" href="main.css"/>
+		<script type="text/javascript" src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
+		<script>document.write('<script src="http://' + (location.host || 'localhost').split(':')[0] + ':35729/livereload.js?snipver=1"></' + 'script>')</script>
+		<script src="vendors.js"></script>
+		<script src="main.js"></script>
+	</head>
+	<body id="page-top" class="index">
+		<div id="hide-search-bar">
+			<header>
+			    <div class="container">
+			        <div class="intro-text">
+			        	<h1>Your Music</h1>
+			        	<p>Search your music favorite in Last.fm<p>
+			        	<div id="search-bar">
+			        	</div>
+			        </div>
+			    </div>
+			</header>
+		</div>
+		<nav class="navbar navbar-default navbar-fixed-top">
+			<div id="search-bar-2" class="container">
+			</div>
+		</nav>
+		<div class="container">
+			<div class="col-md-8 col-sm-12" id="results"></div>
+			<div class="col-md-4 col-sm-12" id="favorites"></div>
+			<div class="col-md-8 col-sm-12" id="pager"></div>
+		</div>
+</body>
 </html>

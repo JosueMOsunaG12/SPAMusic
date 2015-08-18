@@ -8,6 +8,7 @@ var uglify = require('gulp-uglify');
 var streamify = require('gulp-streamify');
 var notify = require('gulp-notify');
 var concat = require('gulp-concat');
+var less = require('gulp-less');
 var cssmin = require('gulp-cssmin');
 var gutil = require('gulp-util');
 var shell = require('gulp-shell');
@@ -123,6 +124,28 @@ var browserifyTask = function (options) {
   
 }
 
+var lessTask = function (options) {
+    if (options.development) {
+      var run = function () {
+        console.log(arguments);
+        var start = new Date();
+        console.log('Building LESS bundle');
+        gulp.src(options.src)
+          .pipe(less())
+          .pipe(gulp.dest(options.dest))
+          .pipe(notify(function () {
+            console.log('LESS bundle built in ' + (Date.now() - start) + 'ms');
+          }));
+      };
+      run();
+      gulp.watch(options.src, run);
+    } else {
+      gulp.src(options.src)
+        .pipe(less())
+        .pipe(gulp.dest(options.dest));   
+    }
+}
+
 var cssTask = function (options) {
     if (options.development) {
       var run = function () {
@@ -154,6 +177,13 @@ gulp.task('default', function () {
     src: './app/main.js',
     dest: './build'
   });
+
+  lessTask({
+    development: true,
+    src: './styles/**/*.less',
+    dest: './styles/css'
+  });
+
   
   cssTask({
     development: true,
@@ -175,12 +205,23 @@ gulp.task('deploy', function () {
     src: './app/main.js',
     dest: './dist'
   });
+
+  lessTask({
+    development: false,
+    src: './styles/**/*.less',
+    dest: './styles/css'
+  });
   
   cssTask({
     development: false,
     src: './styles/**/*.css',
     dest: './dist'
   });
+
+  connect.server({
+        root: 'dist/',
+        port: 8000
+    });
 
 });
 
