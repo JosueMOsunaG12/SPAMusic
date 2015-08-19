@@ -1,7 +1,6 @@
 /** @jsx React.DOM */
 var React = require('react');
 var FavoriteList = require('./FavoriteList')
-var Pager = require('./Pager')
 
 var API_URL = "http://ws.audioscrobbler.com/2.0/?"
 var API_KEY = "api_key=a8da4176b3e227778d267fdc4df7ab36"
@@ -33,6 +32,13 @@ var TrackRow = React.createClass({
             <FavoriteList />, favoritesDOM
         );
     },
+    handleArtist: function () {
+        var results = document.getElementById("results");
+
+        React.render(
+            <Hide />, results
+        );
+    },
     render: function() {
         return (
             <div className="col-md-3 col-sm-6 portfolio-item">
@@ -43,9 +49,7 @@ var TrackRow = React.createClass({
                 <div className="portfolio-caption">
                     <h4>{this.props.track.name}</h4>
                     <p className="text-muted"><i>By </i>
-                        <a  href="#" 
-                            onClick={this.handleArtist}
-                        >
+                        <a onClick={this.handleArtist}>
                             {this.props.track.artist}
                         </a>
                     </p>
@@ -88,6 +92,29 @@ var TrackTable = React.createClass({
             self.setState({ tracks: tracks });
         });
     },
+    componentWillReceiveProps: function(nextProps) {
+        // When the component loads, send a jQuery AJAX request
+        var self = this;
+
+        // API endpoint for Last.fm
+        var api_call_url = (API_URL + API_KEY + API_LIMIT + API_FORMAT +
+                    "&page=" + nextProps.page + API_TRACK + 
+                    nextProps.searchText);
+
+        console.log(api_call_url);
+
+        self.setState({ tracks: [] });
+
+        $.getJSON(api_call_url, function(result){
+            if(!result || !result.results || !result.results.trackmatches){
+                return;
+            }
+            var tracks = result.results.trackmatches.track;
+
+            // Update the component's state. This will trigger a render.
+            self.setState({ tracks: tracks });
+        });
+    },    
     render: function() {
         var self = this;
         var rows = [];

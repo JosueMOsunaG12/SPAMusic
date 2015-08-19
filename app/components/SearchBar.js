@@ -16,14 +16,14 @@ var SearchBar = React.createClass({
             searchText: '',
         };
     },
-    handleChange: function(e) {
-        e.preventDefault();
-
+    handleChange: function() {
         this.setState({
             searchText: this.refs.searchTextInput.getDOMNode().value,
         });
     },
-    handleSubmit: function() {
+    handleSubmit: function(e) {
+        e.preventDefault();
+
         var searchText = this.refs.searchTextInput.getDOMNode().value;
         var page = 1;
         var hideSearchBar = document.getElementById("hide-search-bar");
@@ -34,19 +34,13 @@ var SearchBar = React.createClass({
         $(hideSearchBar).css("height","84px");
 
         React.render(
-            <Hide />, favorites
-        );
-        React.render(
-            <FavoriteList />, favorites
-        );
-        React.render(
-            <Hide />, results
-        );
-        React.render(
             <TrackTable searchText={searchText} page={page} />, results
         );
         React.render(
             <Hide />, hideSearchBar
+        );
+        React.render(
+            <FavoriteList />, favorites
         );
         React.render(
             <Pager searchText={searchText} />, pager

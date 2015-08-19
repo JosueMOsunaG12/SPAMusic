@@ -2,12 +2,6 @@
 var React = require('react');
 var TrackTable = require('./TrackTable.js');
 
-var Hide = React.createClass({
-  render: function(){
-    return null;
-  }
-});
-
 var Pager = React.createClass({
     getInitialState: function() {
         return {
@@ -16,44 +10,40 @@ var Pager = React.createClass({
     },
     handleNext: function() {
         var new_page = this.state.page + 1; 
-        var self = this;
 
         React.render(
-            <TrackTable searchText={self.props.searchText} page={new_page} />,
+            <TrackTable searchText={this.props.searchText} page={new_page} />,
             results
         );
 
-        self.setState({ page: new_page });
+        this.setState({ page: new_page });
     },
     handlePrevious: function() {
-        var new_page = this.state.page - 1; 
-        var self = this;
+        var new_page = this.state.page - 1;
 
         React.render(
-            <Hide />, results
-        );
-        React.render(
-            <TrackTable searchText={self.props.searchText} page={new_page} />, 
+            <TrackTable searchText={this.props.searchText} page={new_page} />, 
             results
         );
 
-        self.setState({ page: new_page });
+        this.setState({ page: new_page });
     },
     render: function(){
         return(
             <ul className="pager">
+                {(this.state.page > 1) ? 
                 <li>
                     <button 
-                        className="btn btn-default btn-primary" 
+                        className="btn btn-default btn-default" 
                         type="button"
                         onClick={this.handlePrevious}
                     >
                         Previous
                     </button>
-                </li>               
+                </li>: false}
                 <li>
                     <button 
-                        className="btn btn-default btn-primary" 
+                        className="btn btn-default btn-default" 
                         type="button"
                         onClick={this.handleNext}
                     >
