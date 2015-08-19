@@ -3,7 +3,7 @@ var React = require('react');
 var TrackTable = require('./TrackTable');
 var ArtistDetail = require('./ArtistDetail');
 
-var Pager = React.createClass({
+var ArtistPager = React.createClass({
     getInitialState: function() {
         return {
             page: 1,
@@ -13,9 +13,9 @@ var Pager = React.createClass({
         var new_page = this.state.page + 1; 
 
         React.render(
-            <TrackTable searchText={this.props.searchText} page={new_page} />,
+            <ArtistDetail artist={this.props.artist} page={new_page} />,
             results
-        );    
+        );
 
         this.setState({ 
             page: new_page
@@ -25,9 +25,9 @@ var Pager = React.createClass({
         var new_page = this.state.page - 1;
 
         React.render(
-            <TrackTable searchText={this.props.searchText} page={new_page} />,
+            <ArtistDetail artist={this.props.artist} page={new_page} />,
             results
-        );    
+        );
 
         this.setState({ page: new_page });
     },
@@ -58,5 +58,5 @@ var Pager = React.createClass({
     }
 });
 
-module.exports = Pager;
+module.exports = ArtistPager;
         

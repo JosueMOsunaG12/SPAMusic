@@ -1,6 +1,8 @@
 /** @jsx React.DOM */
 var React = require('react');
-var FavoriteList = require('./FavoriteList')
+var FavoriteList = require('./FavoriteList');
+var ArtistDetail = require('./ArtistDetail');
+var ArtistPager = require('./ArtistPager');
 
 var API_URL = "http://ws.audioscrobbler.com/2.0/?"
 var API_KEY = "api_key=a8da4176b3e227778d267fdc4df7ab36"
@@ -26,17 +28,23 @@ var TrackRow = React.createClass({
         localStorage.setItem('favorites', JSON.stringify(favorites));
 
         React.render(
-            <Hide />, favoritesDOM
-        );
-        React.render(
             <FavoriteList />, favoritesDOM
         );
     },
     handleArtist: function () {
         var results = document.getElementById("results");
+        var pager = document.getElementById("pager");
+        var option_pager = "ArtistDetail";
+        var page = 1;
+        var artist = this.props.track.artist;
 
         React.render(
-            <Hide />, results
+            <ArtistPager artist={artist} />, 
+            pager
+        );
+        React.render(
+            <ArtistDetail artist={artist} page={page} />, 
+            results
         );
     },
     render: function() {
@@ -100,8 +108,6 @@ var TrackTable = React.createClass({
         var api_call_url = (API_URL + API_KEY + API_LIMIT + API_FORMAT +
                     "&page=" + nextProps.page + API_TRACK + 
                     nextProps.searchText);
-
-        console.log(api_call_url);
 
         self.setState({ tracks: [] });
 

@@ -1,19 +1,31 @@
 <!DOCTYPE html>
 <html>
 	<head>
-		<meta charset="UTF-8"/>
 		<link rel="stylesheet" href="main.css"/>
 		<script type="text/javascript" src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
-  	</head>
-  	<body id="page-top" class="index">
 		<script src="main.js"></script>
-		<header id="app">
-		</header>
+	</head>
+	<body id="page-top" class="index">
+		<div id="hide-search-bar">
+			<header>
+			    <div class="container">
+			        <div class="intro-text">
+			        	<h1>Your Music</h1>
+			        	<p>Search your music favorite in Last.fm<p>
+			        	<div id="search-bar">
+			        	</div>
+			        </div>
+			    </div>
+			</header>
+		</div>
 		<nav class="navbar navbar-default navbar-fixed-top">
-        	<div class="container" id="search-bar">
-        	</div>
-        </nav>
-        <div class="col-md-8 col-sm-12" id="results"></div>
-        <div class="col-md-4 col-sm-12" id="favorites"></div>
-	</body>
+			<div id="search-bar-2" class="container">
+			</div>
+		</nav>
+		<div class="container">
+			<div class="col-md-8 col-sm-12" id="results"></div>
+			<div class="col-md-4 col-sm-12" id="favorites"></div>
+			<div class="col-md-8 col-sm-12" id="pager"></div>
+		</div>
+</body>
 </html>

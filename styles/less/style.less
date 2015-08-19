@@ -49,6 +49,15 @@ h1, h2, h3, h4, h5, h6 {
 	font-weight: 700;
 }
 
+h2 {
+	padding-top: 20px;
+	background: darken(@brand-primary, 30%);
+	text-align: center;
+	height: 100px;
+	color: white;
+	font-style: italic;
+}
+
 .img-centered {
 	margin: 0 auto;
 }
@@ -194,53 +203,16 @@ header {
 
 // Portfolio Section
 
-#portfolio {
+#results {
     .portfolio-item {
-        margin: 0 0 15px;
-        height: 
-        right: 0;
-        .portfolio-link {
-            display: block;
-            position: relative;
-            max-width: 400px;
-            margin: 0 auto;
-            .portfolio-hover {
-                background: fade(@brand-primary, 90%);
-                position: absolute;
-                width: 100%;
-                height: 100%;
-                opacity: 0;
-                transition: all ease 0.5s;
-                -webkit-transition: all ease 0.5s;
-                -moz-transition: all ease 0.5s;
-                &:hover {
-                    opacity: 1;
-                }
-                .portfolio-hover-content {
-                    position: absolute;
-                    width: 100%;
-                    height: 20px;
-                    font-size: 20px;
-                    text-align: center;
-                    top: 50%;
-                    margin-top: -12px;
-                    color: white;
-                    i {
-                        margin-top: -12px;
-                    }
-                    h3,
-                    h4 {
-                        margin: 0;
-                    }
-                }                
-            }            
-        }
         .portfolio-caption {
         	max-width: 400px;
         	margin: 0 auto;
-        	background-color: white;
         	text-align: center;
-        	padding: 25px;
+        	height: 110px;
+			margin-bottom: 40px;
+			background: white;
+			padding: 20px 0;
         	h4 {
         		margin: 0;
         		text-overflow: ellipsis;
@@ -248,26 +220,80 @@ header {
 				height: 40px !important;
 				text-transform: capitalize;
         	}
-        	p {
-        		.serif-font;
-        		font-style: italic;
-        		font-size: 16px;
-        		margin: 0;
-        	}
         }
-    }
-    * {
-        z-index: 2;
     }
 }
 
 @media(min-width:767px) {
-    #portfolio {
-        .portfolio-item {
-            margin: 0 0 30px;
-        }
+    .portfolio-item {
+        margin: 0 0 10px;
     }
 }
+
+// Favorites List
+#favorites {
+	.favorites-list {
+		margin-top: 20px;
+		overflow-y: scroll;
+		height: 750px;
+		h2 {
+			margin-top: 0;
+		}
+		.portfolio-item {
+			background: white;
+			padding: 10px 0 10px;
+	    	.portfolio-caption {
+	    		h4 {
+	    			height: 30px;
+	        		text-overflow: ellipsis;
+					overflow: hidden;
+					line-height: 16px;
+	    		}
+	    		p {
+					height: 22px;
+	        		text-overflow: ellipsis;
+					overflow: hidden;
+	    		}
+	    	}
+	    	.btn-danger {
+	    		float:right;
+	    	}
+	    }
+	}
+}
+
+.artist-detail {
+	margin-top: 20px;
+	.artist-image {
+		background-size: 50%;
+		background-position: 0 50%;
+		h3 {
+			margin: -45px 0 30px;
+			color: white;
+			text-align: center;
+		}
+		h2 {
+			background: fadeout(darken(@brand-primary, 30%), 40%);
+		}
+	}
+	.artist-item {
+		h4 {
+			background: white;
+			padding: 10px;
+			height: 54px;
+			overflow: hidden;
+			text-overflow: ellipsis;
+			margin-bottom: 0;
+		}
+		p {
+			background: white;
+			margin: 10px 0 0;
+			padding: 10px;
+			text-align: center;
+		}
+	}
+}
+
 
 ul.social-buttons {
 	margin-bottom: 0;
@@ -301,6 +327,12 @@ ul.social-buttons {
 	outline: none;
 }
 
+.pager {
+	li {
+	margin: auto 10px;
+	}
+}
+
 // Highlight Color Customization
 
 ::-moz-selection {
@@ -324,6 +356,7 @@ img::-moz-selection {
 body, html {
     webkit-tap-highlight-color: @brand-primary;
     height: 100%;
+    background: @gray-lighter;
 }
 #hide-search-bar {
     height: 100%;

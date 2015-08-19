@@ -1,8 +1,8 @@
 /** @jsx React.DOM */
 var React = require('react');
-var TrackTable = require('./TrackTable.js');
-var FavoriteList = require('./FavoriteList.js')
-var Pager =require('./Pager.js')
+var TrackTable = require('./TrackTable');
+var FavoriteList = require('./FavoriteList');
+var Pager = require('./Pager')
 
 var Hide = React.createClass({
   render: function(){
@@ -30,6 +30,7 @@ var SearchBar = React.createClass({
         var results = document.getElementById("results");
         var favorites = document.getElementById("favorites");
         var pager = document.getElementById("pager");
+        var option_pager = "TrackTable"
 
         $(hideSearchBar).css("height","84px");
 
@@ -43,7 +44,8 @@ var SearchBar = React.createClass({
             <FavoriteList />, favorites
         );
         React.render(
-            <Pager searchText={searchText} />, pager
+            <Pager searchText={searchText} />, 
+            pager
         );
         React.render(
             <SearchBar />,
@@ -58,7 +60,7 @@ var SearchBar = React.createClass({
                         <input 
                             type="text" 
                             className="form-control" 
-                            placeholder="Search for..."
+                            placeholder="Your favorite artist or track"
                             value={this.state.searchText}
                             ref="searchTextInput"
                             onChange={this.handleChange}
