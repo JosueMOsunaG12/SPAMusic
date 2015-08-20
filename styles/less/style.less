@@ -155,16 +155,16 @@ header {
 	text-align: center;
 	color: white;
 	background: url('./images/launching-soon.jpg') no-repeat;
-	background-size: 100%;
+	.background-cover;
 	background-color: @brand-primary-dark;
-	height: 100%;
+	min-height: 100%;
 	.intro-text {
-		padding-top: 130px;
+		padding-top: 110px;
 		padding-bottom: 50px;
 		h1 {
 			.cursive-font;
-		    font-size: 76px;
-		    margin-bottom: 90px;
+		    font-size: 110px;
+		    margin-bottom: 70px;
 		    text-transform: capitalize;
 		    font-weight: lighter;
 		}
@@ -173,10 +173,17 @@ header {
 			font-size: 40px;
 			margin-bottom: 40px;
 		}
+		.copyright {
+			.segoeui-font;
+			font-size: 12px;
+			margin-bottom: 25px;	
+		}
 	}
 }
 
 #search-bar {
+	height: 70px;
+	margin-bottom: 245px;
 	input, button {
 		height: 70px;
 	    padding: 10px 20px;
@@ -291,27 +298,36 @@ header {
 
 
 ul.social-buttons {
-	margin-bottom: 0;
+	margin: 0 auto 40px;
+	width: 150px;
+	height: 32px;
+	padding: 0;
 	li {
-		a {
-			display: block;
-			background-color: @gray-darkest;
-			height: 40px;
-			width: 40px;
-			border-radius: 100%;
-			font-size: 20px;
-			line-height: 40px;
-			color: white;
-			outline: none;
-	        -webkit-transition: all 0.3s;
-	        -moz-transition: all 0.3s;
-	        transition: all 0.3s;
-	        &:hover,
-	        &:focus,
-	        &:active {
-				background-color: @brand-primary;
-	        }
-		}
+		display: block;
+		height: 32px;
+		width: 32px;
+        -webkit-transition: all 0.3s;
+        -moz-transition: all 0.3s;
+        transition: all 0.3s;
+        float: left;
+        margin:0 9px;
+        &:hover,
+        &:focus,
+        &:active {
+			background-color: @brand-primary;
+        }
+    }
+    .facebook {
+    	background: url('./images/facebook.png') no-repeat;
+        background-size: 100%;
+    }
+    .twitter {
+    	background: url('./images/twitter.png') no-repeat;
+    	background-size: 100%;
+    }
+    .rss {
+    	background: url('./images/RSS.png') no-repeat;
+    	background-size: 100%;
 	}
 }
 
