@@ -1,14 +1,14 @@
 /** @jsx React.DOM */
 var React = require('react');
+var request = require('superagent')
 var FavoriteList = require('./FavoriteList');
 var ArtistDetail = require('./ArtistDetail');
 var ArtistPager = require('./ArtistPager');
 
 var API_URL = "https://ws.audioscrobbler.com/2.0/?"
-var API_KEY = "api_key=a8da4176b3e227778d267fdc4df7ab36"
-var API_LIMIT = "&limit=8"
-var API_FORMAT = "&format=json"
-var API_TRACK = "&method=track.search&track="
+var API_KEY = "a8da4176b3e227778d267fdc4df7ab36"
+var API_LIMIT = "8"
+var API_FORMAT = "json"
 
 var Hide = React.createClass({
   render: function(){
@@ -81,45 +81,42 @@ var TrackTable = React.createClass({
         // The tracks array will be populated via AJAX
         return { tracks: [] };
     },
+    jsonRequest: function(page, searchText) {
+        var self = this;
+        var tracks = {};
+        // API endpoint for Last.fm
+        var query_url = {
+            api_key: API_KEY,
+            limit: API_LIMIT,
+            format: API_FORMAT,
+            page: page,
+            method: "track.search",
+            track: searchText}
+
+        request
+            .get(API_URL)
+            .query(query_url)
+            .end(function(err, res){
+                if (err) throw err;
+
+                result = JSON.parse(res["text"]);
+
+                console.log(result.results.trackmatches);
+                if (!result.results.trackmatches) return;
+
+                tracks = result.results.trackmatches.track;
+
+                self.setState({ tracks: tracks });
+            });
+    },
     componentDidMount: function(){
         // When the component loads, send a jQuery AJAX request
-        var self = this;
-
-        // API endpoint for Last.fm
-        var api_call_url = (API_URL + API_KEY + API_LIMIT + API_FORMAT +
-                    "&page=" + this.props.page + API_TRACK + 
-                    this.props.searchText);
-
-        $.getJSON(api_call_url, function(result){
-            if(!result || !result.results || !result.results.trackmatches){
-                return;
-            }
-            var tracks = result.results.trackmatches.track;
-
-            // Update the component's state. This will trigger a render.
-            self.setState({ tracks: tracks });
-        });
+        this.jsonRequest(this.props.page, this.props.searchText);
     },
     componentWillReceiveProps: function(nextProps) {
-        // When the component loads, send a jQuery AJAX request
-        var self = this;
-
-        // API endpoint for Last.fm
-        var api_call_url = (API_URL + API_KEY + API_LIMIT + API_FORMAT +
-                    "&page=" + nextProps.page + API_TRACK + 
-                    nextProps.searchText);
-
-        self.setState({ tracks: [] });
-
-        $.getJSON(api_call_url, function(result){
-            if(!result || !result.results || !result.results.trackmatches){
-                return;
-            }
-            var tracks = result.results.trackmatches.track;
-
-            // Update the component's state. This will trigger a render.
-            self.setState({ tracks: tracks });
-        });
+        // When the component receive nextProps, send a jQuery AJAX request
+        if ( nextProps.page != this.props.page || nextProps.page != this.props.page)
+            this.jsonRequest(nextProps.page, nextProps.searchText);
     },    
     render: function() {
         var self = this;

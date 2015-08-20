@@ -49,10 +49,9 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 h2 {
-	padding-top: 20px;
+	padding: 35px 20px;
 	background: darken(@brand-primary, 30%);
 	text-align: center;
-	height: 100px;
 	color: white;
 	font-style: italic;
 }
@@ -70,8 +69,10 @@ h2 {
 // Custom Navigation Bar
 
 .navbar-default {
-	background-color: transparent;
+	background-color: @brand-primary-dark;
 	border-color: transparent;
+	min-height: 0;
+	padding: 0;
 	.navbar-brand {
 		color: @brand-primary;
 		.segoeui-sb-font;
@@ -125,8 +126,6 @@ h2 {
 
 @media(min-width:768px) {
     .navbar-default {
-    	background-color: transparent;
-        padding: 25px 0;
         -webkit-transition: padding 0.3s;
         -moz-transition: padding 0.3s;
         transition: padding 0.3s;
@@ -182,6 +181,12 @@ header {
 		height: 70px;
 	    padding: 10px 20px;
 	    font-size: 20px;
+	}
+}
+#search-bar-2 {
+	.col-md-8 {
+		margin-top: 25px;
+		margin-bottom: 25px;
 	}
 }
 
@@ -249,6 +254,7 @@ header {
 
 .artist-detail {
 	margin-top: 20px;
+
 	.artist-image {
 		background-size: 50%;
 		background-position: 0 50%;
@@ -262,6 +268,7 @@ header {
 		}
 	}
 	.artist-item {
+		background: fadeout(@brand-primary, 60%);
 		h4 {
 			background: white;
 			padding: 10px;
@@ -275,6 +282,9 @@ header {
 			margin: 10px 0 0;
 			padding: 10px;
 			text-align: center;
+		}
+		&:last-of-type {
+			padding-bottom: 20px;
 		}
 	}
 }

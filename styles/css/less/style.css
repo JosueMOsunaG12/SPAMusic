@@ -56,10 +56,9 @@ h6 {
   font-family: "SegoeUI SemiBold", sans-serif;
 }
 h2 {
-  padding-top: 20px;
+  padding: 35px 20px;
   background: #854c03;
   text-align: center;
-  height: 100px;
   color: white;
   font-style: italic;
 }
@@ -109,8 +108,10 @@ fieldset[disabled] .btn-primary.active {
   margin: 0 auto;
 }
 .navbar-default {
-  background-color: transparent;
+  background-color: #201404;
   border-color: transparent;
+  min-height: 0;
+  padding: 0;
 }
 .navbar-default .navbar-brand {
   color: #fa9e27;
@@ -159,8 +160,6 @@ fieldset[disabled] .btn-primary.active {
 }
 @media (min-width: 768px) {
   .navbar-default {
-    background-color: transparent;
-    padding: 25px 0;
     -webkit-transition: padding 0.3s;
     -moz-transition: padding 0.3s;
     transition: padding 0.3s;
@@ -188,7 +187,7 @@ header {
   color: white;
   background: url('images/launching-soon.jpg') no-repeat;
   background-size: 100%;
-  background-color: #442805;
+  background-color: #201404;
   height: 100%;
 }
 header .intro-text {
@@ -212,6 +211,10 @@ header .intro-text p {
   height: 70px;
   padding: 10px 20px;
   font-size: 20px;
+}
+#search-bar-2 .col-md-8 {
+  margin-top: 25px;
+  margin-bottom: 25px;
 }
 #results .portfolio-item .portfolio-caption {
   max-width: 400px;
@@ -275,6 +278,9 @@ header .intro-text p {
 .artist-detail .artist-image h2 {
   background: rgba(133, 76, 3, 0.6);
 }
+.artist-detail .artist-item {
+  background: rgba(250, 158, 39, 0.4);
+}
 .artist-detail .artist-item h4 {
   background: white;
   padding: 10px;
@@ -288,6 +294,9 @@ header .intro-text p {
   margin: 10px 0 0;
   padding: 10px;
   text-align: center;
+}
+.artist-detail .artist-item:last-of-type {
+  padding-bottom: 20px;
 }
 ul.social-buttons {
   margin-bottom: 0;
@@ -342,5 +351,5 @@ html {
 }
 #hide-search-bar {
   height: 100%;
-  background-color: #442805;
+  background-color: #201404;
 }

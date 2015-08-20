@@ -1,12 +1,12 @@
 /** @jsx React.DOM */
 var React = require('react');
+var request = require('superagent');
 var FavoriteList = require('./FavoriteList')
 
 var API_URL = "https://ws.audioscrobbler.com/2.0/?"
-var API_KEY = "api_key=a8da4176b3e227778d267fdc4df7ab36"
-var API_LIMIT = "&limit=10"
-var API_FORMAT = "&format=json"
-var API_TRACK = "&method=artist.getTopTracks&artist="
+var API_KEY = "a8da4176b3e227778d267fdc4df7ab36"
+var API_LIMIT = "10"
+var API_FORMAT = "json"
 
 var ArtistRow = React.createClass({
     handleFavorite: function () {
@@ -53,19 +53,29 @@ var ArtistDetail = React.createClass({
         var self = this;
 
         // API endpoint for Last.fm
-        var api_call_url = (API_URL + API_KEY + API_LIMIT + API_FORMAT +
-                    "&page=" + this.props.page + API_TRACK + 
-                    this.props.artist);
+        var query_url = {
+            api_key: API_KEY,
+            limit: API_LIMIT,
+            format: API_FORMAT,
+            page: this.props.page,
+            method: "artist.getTopTracks",
+            artist: this.props.artist}
 
-        $.getJSON(api_call_url, function(result){
-            if(!result || !result.toptracks ){
-                return;
-            }
-            var tracks = result.toptracks.track;
+        request
+            .get(API_URL)
+            .query(query_url)
+            .end(function(err, res){
+                if (err) throw err;
 
-            // Update the component's state. This will trigger a render.
-            self.setState({ tracks: tracks });
-        });
+                result = JSON.parse(res["text"]);
+
+                if (!result.toptracks) return;
+
+                var tracks = result.toptracks.track;
+
+                // Update the component's state. This will trigger a render.
+                self.setState({ tracks: tracks });
+            });
     },
     componentWillReceiveProps: function(nextProps) {
         // When the component loads, send a jQuery AJAX request
