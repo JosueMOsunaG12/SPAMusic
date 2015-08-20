@@ -2,7 +2,7 @@
 var React = require('react');
 var FavoriteList = require('./FavoriteList')
 
-var API_URL = "http://ws.audioscrobbler.com/2.0/?"
+var API_URL = "https://ws.audioscrobbler.com/2.0/?"
 var API_KEY = "api_key=a8da4176b3e227778d267fdc4df7ab36"
 var API_LIMIT = "&limit=10"
 var API_FORMAT = "&format=json"

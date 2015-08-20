@@ -1,0 +1,16 @@
+@font-face {
+  font-family: BrushScriptStd;
+  src: url("/fonts/BrushScriptStd.otf");
+}
+@font-face {
+  font-family: SegoeUI;
+  src: url("/fonts/segoeui.otf");
+}
+@font-face {
+  font-family: "SegoeUI SemiLight";
+  src: url("/fonts/segoeuisl.otf");
+}
+@font-face {
+  font-family: "SegoeUI SemiBold";
+  src: url("/fonts/segoeuisb.otf");
+}

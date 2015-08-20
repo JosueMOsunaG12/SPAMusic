@@ -220,7 +220,8 @@ gulp.task('deploy', function () {
 
   connect.server({
         root: 'dist/',
-        port: 8000
+        port: process.env.PORT || 5000,
+	livereload: false
     });
 
 });

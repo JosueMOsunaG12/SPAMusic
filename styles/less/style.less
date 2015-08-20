@@ -5,7 +5,7 @@
 
 body {
 	overflow-x: hidden;
-	.body-font;
+	.segoeui-font;
 }
 
 .text-muted {
@@ -45,8 +45,7 @@ a.active {
 }
 
 h1, h2, h3, h4, h5, h6 {
-	.heading-font;
-	font-weight: 700;
+	.segoeui-sb-font;
 }
 
 h2 {
@@ -58,26 +57,24 @@ h2 {
 	font-style: italic;
 }
 
+.btn-primary {
+        .button-variant(white; @brand-primary; @brand-primary);
+        .segoeui-sb-font;
+}
+
+
 .img-centered {
 	margin: 0 auto;
-}
-
-.bg-light-gray {
-	background-color: @gray-lighter;
-}
-
-.bg-darkest-gray {
-	background-color: @gray-darkest;
 }
 
 // Custom Navigation Bar
 
 .navbar-default {
-	background-color: @brand-primary-dark;
+	background-color: transparent;
 	border-color: transparent;
 	.navbar-brand {
 		color: @brand-primary;
-		.script-font;
+		.segoeui-sb-font;
         &:hover,
         &:focus,
         &:active,
@@ -102,7 +99,7 @@ h2 {
     .nav {
     	li {
     		a {
-    			.heading-font;
+    			.segoeui-sl-font;
     			font-weight: 400;
     			letter-spacing: 1px;
     			color: white;
@@ -128,7 +125,7 @@ h2 {
 
 @media(min-width:768px) {
     .navbar-default {
-    	background-color: @brand-primary-dark;
+    	background-color: transparent;
         padding: 25px 0;
         -webkit-transition: padding 0.3s;
         -moz-transition: padding 0.3s;
@@ -153,53 +150,41 @@ h2 {
 	}
 }
 
+// Header main
+
 header {
 	text-align: center;
 	color: white;
+	background: url('./images/launching-soon.jpg') no-repeat;
+	background-size: 100%;
 	background-color: @brand-primary-dark;
 	height: 100%;
 	.intro-text {
-		padding-top: 100px;
+		padding-top: 130px;
 		padding-bottom: 50px;
-		.intro-lead-in {
-			.serif-font;
-			font-style: italic;
-			font-size: 22px;
-			line-height: 22px;
-			margin-bottom: 25px;
+		h1 {
+			.cursive-font;
+		    font-size: 76px;
+		    margin-bottom: 90px;
+		    text-transform: capitalize;
+		    font-weight: lighter;
 		}
-		.intro-heading {
-			.heading-font;
-			font-weight: 700;
-			font-size: 50px;
-			line-height: 50px;
-			margin-bottom: 25px;
+		p {
+			.segoeui-sl-font;
+			font-size: 40px;
+			margin-bottom: 40px;
 		}
 	}
 }
 
-@media(min-width:768px) {
-	header {
-		.intro-text {
-			padding-top: 250px;
-			padding-bottom: 200px;
-			.intro-lead-in {
-				.serif-font;
-				font-style: italic;
-				font-size: 40px;
-				line-height: 40px;
-				margin-bottom: 25px;
-			}
-			.intro-heading {
-				.heading-font;
-				font-weight: 700;
-				font-size: 75px;
-				line-height: 75px;
-				margin-bottom: 50px;
-			}
-		}
+#search-bar {
+	input, button {
+		height: 70px;
+	    padding: 10px 20px;
+	    font-size: 20px;
 	}
 }
+
 
 // Portfolio Section
 
@@ -360,5 +345,5 @@ body, html {
 }
 #hide-search-bar {
     height: 100%;
-    background-color: #010025;
+    background-color: @brand-primary-dark;
 }

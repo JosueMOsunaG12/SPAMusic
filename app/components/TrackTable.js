@@ -4,7 +4,7 @@ var FavoriteList = require('./FavoriteList');
 var ArtistDetail = require('./ArtistDetail');
 var ArtistPager = require('./ArtistPager');
 
-var API_URL = "http://ws.audioscrobbler.com/2.0/?"
+var API_URL = "https://ws.audioscrobbler.com/2.0/?"
 var API_KEY = "api_key=a8da4176b3e227778d267fdc4df7ab36"
 var API_LIMIT = "&limit=8"
 var API_FORMAT = "&format=json"
