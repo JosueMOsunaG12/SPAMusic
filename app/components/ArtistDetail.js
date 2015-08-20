@@ -48,8 +48,7 @@ var ArtistDetail = React.createClass({
         // The tracks array will be populated via AJAX
         return { tracks: [] };
     },
-    componentDidMount: function(){
-        // When the component loads, send a jQuery AJAX request
+    jsonRequest: function(page, artist) {
         var self = this;
 
         // API endpoint for Last.fm
@@ -57,9 +56,9 @@ var ArtistDetail = React.createClass({
             api_key: API_KEY,
             limit: API_LIMIT,
             format: API_FORMAT,
-            page: this.props.page,
+            page: page,
             method: "artist.getTopTracks",
-            artist: this.props.artist}
+            artist: artist}
 
         request
             .get(API_URL)
@@ -76,27 +75,16 @@ var ArtistDetail = React.createClass({
                 // Update the component's state. This will trigger a render.
                 self.setState({ tracks: tracks });
             });
+    }
+    componentDidMount: function(){
+        // When the component loads, send a jQuery AJAX request
+        this.jsonRequest(this.props.page, this.props.artist);
     },
     componentWillReceiveProps: function(nextProps) {
-        // When the component loads, send a jQuery AJAX request
-        var self = this;
-
-        // API endpoint for Last.fm
-        var api_call_url = (API_URL + API_KEY + API_LIMIT + API_FORMAT +
-                    "&page=" + nextProps.page + API_TRACK + 
-                    nextProps.artist);
-
-        self.setState({ tracks: [] });
-
-        $.getJSON(api_call_url, function(result){
-            if(!result || !result.toptracks ){
-                return;
-            }
-            var tracks = result.toptracks.track;
-
-            // Update the component's state. This will trigger a render.
-            self.setState({ tracks: tracks });
-        });
+        // When the component receive nextProps, send a jQuery AJAX request
+        if ( nextProps.artist != this.props.artist 
+            || nextProps.page != this.props.page)
+            this.jsonRequest(nextProps.page, nextProps.artist);
     },    
     render: function() {
         var rows = [];
