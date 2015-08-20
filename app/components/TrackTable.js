@@ -115,7 +115,8 @@ var TrackTable = React.createClass({
     },
     componentWillReceiveProps: function(nextProps) {
         // When the component receive nextProps, send a jQuery AJAX request
-        if ( nextProps.page != this.props.page || nextProps.page != this.props.page)
+        if ( nextProps.searchText != this.props.searchText 
+            || nextProps.page != this.props.page)
             this.jsonRequest(nextProps.page, nextProps.searchText);
     },    
     render: function() {

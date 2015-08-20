@@ -103,6 +103,7 @@ h2 {
 .btn-primary:hover,
 .btn-primary:focus,
 .btn-primary:active,
+.btn-primary:active:hover,
 .btn-primary.active,
 .open .dropdown-toggle.btn-primary {
   color: white;
