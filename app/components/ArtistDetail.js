@@ -75,7 +75,7 @@ var ArtistDetail = React.createClass({
                 // Update the component's state. This will trigger a render.
                 self.setState({ tracks: tracks });
             });
-    }
+    },
     componentDidMount: function(){
         // When the component loads, send a jQuery AJAX request
         this.jsonRequest(this.props.page, this.props.artist);
