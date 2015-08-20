@@ -49,19 +49,32 @@
 
 // Font Selections
 
-.serif-font() {
-	font-family: "Droid Serif", "Helvetica Neue", Helvetica, Arial, sans-serif;
+@font-face {
+    font-family: BrushScriptStd;
+    src: url("/fonts/BrushScriptStd.otf");
+}
+@font-face {
+    font-family: SegoeUI;
+    src: url("/fonts/segoeui.otf");
+}
+@font-face {
+    font-family: "SegoeUI SemiLight";
+    src: url("/fonts/segoeuisl.otf");
+}
+@font-face {
+    font-family: "SegoeUI SemiBold";
+    src: url("/fonts/segoeuisb.otf");
 }
 
-.script-font() {
-	font-family: "Kaushan Script", "Helvetica Neue", Helvetica, Arial, cursive;
+.cursive-font() {
+	font-family: BrushScriptStd, cursive;
 }
-
-.body-font() {
-	font-family: "Roboto Slab", "Helvetica Neue", Helvetica, Arial, sans-serif;
+.segoeui-font() {
+	font-family: SegoeUI, sans-serif;
 }
-
-.heading-font() {
-	font-family: "Montserrat", "Helvetica Neue", Helvetica, Arial, sans-serif;
-	text-transform: uppercase;
+.segoeui-sl-font() {
+	font-family: "SegoeUI SemiLight", sans-serif;
+}
+.segoeui-sb-font() {
+	font-family: "SegoeUI SemiBold", sans-serif;
 }
